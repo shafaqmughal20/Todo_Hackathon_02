@@ -1,0 +1,188 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Phase II Todo App API Schemas",
+  "description": "JSON Schema definitions for request and response validation",
+  "definitions": {
+    "Task": {
+      "type": "object",
+      "required": ["id", "user_id", "title", "completed", "created_at", "updated_at"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Unique task identifier"
+        },
+        "user_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Owner user ID"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "description": "Task title"
+        },
+        "description": {
+          "type": ["string", "null"],
+          "maxLength": 5000,
+          "description": "Optional task description"
+        },
+        "completed": {
+          "type": "boolean",
+          "description": "Completion status"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Task creation timestamp (ISO 8601)"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last modification timestamp (ISO 8601)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "TaskCreate": {
+      "type": "object",
+      "required": ["title"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "description": "Task title (required)"
+        },
+        "description": {
+          "type": ["string", "null"],
+          "maxLength": 5000,
+          "description": "Optional task description"
+        }
+      },
+      "additionalProperties": false
+    },
+    "TaskUpdate": {
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "description": "Updated task title"
+        },
+        "description": {
+          "type": ["string", "null"],
+          "maxLength": 5000,
+          "description": "Updated task description"
+        }
+      },
+      "additionalProperties": false
+    },
+    "TaskCompletionToggle": {
+      "type": "object",
+      "required": ["completed"],
+      "properties": {
+        "completed": {
+          "type": "boolean",
+          "description": "New completion status"
+        }
+      },
+      "additionalProperties": false
+    },
+    "TaskListResponse": {
+      "type": "object",
+      "required": ["tasks", "count"],
+      "properties": {
+        "tasks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Task"
+          },
+          "description": "Array of task objects"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of tasks"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Error": {
+      "type": "object",
+      "required": ["error", "message"],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "Error type identifier"
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable error message"
+        },
+        "details": {
+          "type": "object",
+          "description": "Additional error context",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "examples": {
+    "TaskExample": {
+      "id": 123,
+      "user_id": "550e8400-e29b-41d4-a716-446655440000",
+      "title": "Complete project documentation",
+      "description": "Write comprehensive docs for Phase II implementation",
+      "completed": false,
+      "created_at": "2026-02-07T10:30:00Z",
+      "updated_at": "2026-02-07T14:45:00Z"
+    },
+    "TaskCreateExample": {
+      "title": "Complete project documentation",
+      "description": "Write comprehensive docs for Phase II implementation"
+    },
+    "TaskUpdateExample": {
+      "title": "Complete project documentation (updated)",
+      "description": "Write comprehensive docs including API specs"
+    },
+    "TaskCompletionToggleExample": {
+      "completed": true
+    },
+    "TaskListResponseExample": {
+      "tasks": [
+        {
+          "id": 123,
+          "user_id": "550e8400-e29b-41d4-a716-446655440000",
+          "title": "Complete project documentation",
+          "description": "Write comprehensive docs for Phase II implementation",
+          "completed": false,
+          "created_at": "2026-02-07T10:30:00Z",
+          "updated_at": "2026-02-07T14:45:00Z"
+        },
+        {
+          "id": 124,
+          "user_id": "550e8400-e29b-41d4-a716-446655440000",
+          "title": "Review pull requests",
+          "description": null,
+          "completed": true,
+          "created_at": "2026-02-06T09:15:00Z",
+          "updated_at": "2026-02-07T11:20:00Z"
+        }
+      ],
+      "count": 2
+    },
+    "ErrorExample": {
+      "error": "ValidationError",
+      "message": "Task title cannot be empty",
+      "details": {
+        "field": "title",
+        "constraint": "minLength"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /mnt/c/Users/DELL/OneDrive/Documents/GitHub/Todo_Hackathon/Phase_2/.claude/skills/*/SKILL.md)",
+      "Bash(find:*)",
+      "Bash(tree:*)",
+      "Bash(.specify/scripts/bash/create-phr.sh:*)",
+      "Bash(git fetch --all --prune)",
+      "Bash(ls:*)",
+      "Bash(.specify/scripts/bash/create-new-feature.sh:*)",
+      "Bash(git config:*)",
+      "Bash(.specify/scripts/bash/setup-plan.sh:*)",
+      "Bash(pkill -f \"uvicorn src.main:app\")",
+      "Bash(uvicorn:*)",
+      "Bash(source:*)",
+      "Bash(python:*)",
+      "Bash(pip show:*)",
+      "Bash(env:*)",
+      "Bash(pip install:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd Phase III Todo AI Chatbot with Groq LLM integration\n\nImplemented conversational AI interface for task management:\n- Added Groq LLM integration with llama-3.3-70b-versatile model\n- Created MCP server with 5 task operation tools\n- Built TodoAgent for natural language processing\n- Added chat API endpoints with conversation management\n- Created chat UI with real-time messaging\n- Added database models for conversations and messages\n\nBug fixes and improvements:\n- Fixed bcrypt version compatibility \\(downgraded to 4.0.1\\)\n- Upgraded Groq SDK from 0.4.0 to 1.0.0\n- Added GROQ_API_KEY to Settings configuration\n- Registered chat router in main application\n\nPhase III features:\n- Natural language task management via AI chat\n- Conversation history persistence\n- Real-time AI responses with tool execution\n- Seamless integration with Phase II dashboard\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(curl:*)",
+      "Bash(npm run dev)",
+      "Bash(netstat:*)",
+      "Bash(ss -tuln)"
+    ]
+  }
+}

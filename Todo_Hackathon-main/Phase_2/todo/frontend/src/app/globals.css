@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --primary: 262 83% 58%;
+    --accent: 328 86% 70%;
+  }
+
+  * {
+    @apply border-dark-700;
+  }
+
+  body {
+    background: linear-gradient(to bottom right, #030712, #111827, #1f2937);
+    color: hsl(var(--foreground));
+    min-height: 100vh;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #111827;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #4338ca, #d946ef);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #6366f1, #e879f9);
+  }
+}
+
+@layer components {
+  /* Glowing button styles */
+  .btn-glow {
+    @apply relative overflow-hidden rounded-lg px-6 py-3 font-semibold text-white transition-all duration-300;
+    background: linear-gradient(135deg, #4338ca 0%, #7c3aed 50%, #d946ef 100%);
+    box-shadow: 0 0 20px rgba(217, 70, 239, 0.5);
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 0 30px rgba(217, 70, 239, 0.8);
+    transform: translateY(-2px);
+  }
+
+  .btn-glow:active {
+    transform: translateY(0);
+  }
+
+  /* Card with glow effect */
+  .card-glow {
+    @apply rounded-xl border border-primary-700/30 bg-dark-900/50 backdrop-blur-sm;
+    box-shadow: 0 0 15px rgba(79, 70, 229, 0.2);
+  }
+
+  .card-glow:hover {
+    @apply border-accent-500/50;
+    box-shadow: 0 0 25px rgba(217, 70, 239, 0.3);
+  }
+
+  /* Input with glow focus */
+  .input-glow {
+    @apply w-full rounded-lg border border-dark-700 bg-dark-900/80 px-4 py-3 text-dark-100 placeholder-dark-400 transition-all duration-300 focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/50;
+  }
+
+  /* Animated gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 bg-clip-text text-transparent;
+    background-size: 200% auto;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% center;
+    }
+    50% {
+      background-position: 100% center;
+    }
+  }
+
+  /* Pulse animation for icons */
+  .pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 5px rgba(217, 70, 239, 0.5));
+    }
+    50% {
+      opacity: 0.8;
+      filter: drop-shadow(0 0 15px rgba(217, 70, 239, 0.8));
+    }
+  }
+}

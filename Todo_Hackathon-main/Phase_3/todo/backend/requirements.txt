@@ -1,0 +1,24 @@
+# FastAPI and server
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Database
+sqlmodel==0.0.14
+psycopg2-binary==2.9.9
+
+# Authentication and security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+bcrypt==4.0.1
+
+# Environment and configuration
+python-dotenv==1.0.0
+pydantic[email]==2.5.0
+pydantic-settings==2.1.0
+
+# CORS
+fastapi-cors==0.0.6
+
+# AI/LLM Integration
+groq>=1.0.0
